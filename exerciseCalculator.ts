@@ -1,3 +1,14 @@
+interface ValuesExercise {
+  mondayHour: number;
+  tuesdayHour: number;
+  wednesdayHour: number;
+  thursdayHour: number;
+  fridayHour: number;
+  saturdayHour: number;
+  sundayHour: number; 
+  targetHour: number;
+}
+
 interface Result {
   periodLength: number;
   trainingDays: number;
@@ -39,8 +50,29 @@ const calculateExercises = (exerciseHours: number[], targetHours: number): Resul
   }
 }
 
+const parseExerciseArguments  = (args: string[]): ValuesExercise => {
+  if (args.length < 10) throw new Error('Not enough arguments');
+  if (args.length > 10) throw new Error('Too many arguments');
+
+  if (!isNaN(Number(args[2])) && !isNaN(Number(args[3])) && !isNaN(Number(args[4])) && !isNaN(Number(args[5]))&& !isNaN(Number(args[6])) && !isNaN(Number(args[7])) && !isNaN(Number(args[8])) && !isNaN(Number(args[9]))) {
+    return {
+      mondayHour: Number(args[2]),
+      tuesdayHour: Number(args[3]),
+      wednesdayHour: Number(args[4]),
+      thursdayHour: Number(args[5]),
+      fridayHour: Number(args[6]),
+      saturdayHour: Number(args[7]),
+      sundayHour: Number(args[8]), 
+      targetHour: Number(args[9])
+    }
+  } else {
+    throw new Error('Provided values were not numbers!');
+  }
+}
+
 try {
-  const result = calculateExercises([3, 0, 2, 4.5, 0, 3, 1], 2);
+  const valuesExercise = parseExerciseArguments(process.argv);
+  const result = calculateExercises([valuesExercise.mondayHour, valuesExercise.tuesdayHour, valuesExercise.wednesdayHour, valuesExercise.thursdayHour, valuesExercise.fridayHour, valuesExercise.saturdayHour, valuesExercise.sundayHour], valuesExercise.targetHour);
   console.log(result);
 } catch(error) {
   let errorMessage = 'Something bad happened.'

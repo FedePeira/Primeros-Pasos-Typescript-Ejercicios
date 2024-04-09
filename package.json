@@ -7,6 +7,8 @@
     "ts-node": "ts-node",
     "calculateBmi": "ts-node bmiCalculator.ts",
     "calculateExercises": "ts-node exerciseCalculator.ts",
+    "start": "ts-node index.ts",
+    "dev": "ts-node-dev index.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Federico Peirano",
@@ -19,6 +21,10 @@
     "@types/node": "^20.12.5",
     "@types/react": "^18.2.74",
     "ts-node": "^10.9.2",
+    "ts-node-dev": "^2.0.0",
     "typescript": "^5.4.4"
+  },
+  "dependencies": {
+    "express": "^4.19.2"
   }
 }

@@ -1,3 +1,8 @@
+interface Values {
+  altura: number;
+  peso: number;
+}
+
 const calculateBmi = (altura: number, peso: number): string => {
  const imc = peso / altura * altura;
 
@@ -12,8 +17,26 @@ const calculateBmi = (altura: number, peso: number): string => {
   }
 }
 
+const parseArguments = (args: string[]): Values => {
+  if (args.length < 4) throw new Error('Not enough arguments');
+  if (args.length > 4) throw new Error('Too many arguments');
+
+  console.log(Number(args[2]))
+  console.log(Number(args[3]))
+
+  if(!isNaN(Number(args[2])) && !isNaN(Number(args[3]))) {
+    return {
+      altura: Number(args[2]),
+      peso: Number(args[3])
+    }
+  } else {
+    throw new Error('Provided values were not numbers!');
+  }
+}
+
 try {
-    console.log(calculateBmi(180, 74));
+    const { altura, peso } = parseArguments(process.argv);
+    console.log(calculateBmi(altura, peso));
 } catch(error: unknown) {
   let errorMessage = 'Something went wrong: ';
   if(error instanceof Error){
