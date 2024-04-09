@@ -3,18 +3,16 @@ interface Values {
   peso: number;
 }
 
-const calculateBmi = (altura: number, peso: number): string => {
+export const calculateBmi = (altura: number, peso: number): string => {
  const imc = peso / altura * altura;
 
   if(imc < 60) {
-    return "Bajo peso";
+    return "Underweight (low weight)";
   } else if(imc >= 60 && imc < 90) {
-    return "Normal (peso saludable)";
-  } else if(imc >= 80 && imc < 100) {
-    return "Sobrepeso";
+    return "Normal (healthy weight)";
   } else {
-    return "Obesidad";
-  }
+    return "Overweight (high weight)";
+  } 
 }
 
 const parseArguments = (args: string[]): Values => {
