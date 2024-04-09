@@ -19,7 +19,7 @@ interface Result {
   average: number;
 }
 
-const calculateExercises = (exerciseHours: number[], targetHours: number): Result => {
+export const calculateExercises = (exerciseHours: number[], targetHours: number): Result => {
   const periodLength = exerciseHours.length;
   const trainingDays = exerciseHours.filter(hours => hours > 0).length;
   const totalHours = exerciseHours.reduce((sum, hours) => sum + hours, 0);
